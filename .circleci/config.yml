@@ -18,8 +18,6 @@ jobs:
     working_directory: ~/nest
     docker:
       - image: circleci/node:12
-    environment:
-      PUBSUB_EMULATOR_HOST: localhost:8681
     steps:
       - checkout
       - run:
@@ -36,6 +34,8 @@ jobs:
   integration_tests:
     working_directory: ~/nest
     machine: true
+    environment:
+      PUBSUB_EMULATOR_HOST: localhost:8681
     steps:
       - checkout
       - run:
