@@ -23,18 +23,13 @@ jobs:
       - run:
           name: Update NPM version
           command: 'sudo npm install -g npm@latest'
-      - restore_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
-      - run:
-          name: Install dependencies
-          command: yarn install --frozen-lockfile
+      - *restore-cache
+      - *install-deps
       - save_cache:
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
             - ./node_modules
-      - run:
-          name: Build
-          command: yarn build
+      - *build-packages
 
   integration_tests:
     working_directory: ~/nest
@@ -52,9 +47,6 @@ jobs:
             nvm install v12
             node -v
             nvm alias default v12
-      - run:
-          name: Install Yarn
-          command: npm install yarn -g
       - run:
           name: Install Docker Compose
           command: |
