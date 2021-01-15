@@ -1,0 +1,10 @@
+version: "3"
+services:
+  pubsub:
+    image: messagebird/gcloud-pubsub-emulator:latest
+    ports:
+      - '8681:8681'
+    environment:
+      - PUBSUB_PROJECT1=default_project,event
+      - PUBSUB_PROJECT2=project2,message
+    restart: always
