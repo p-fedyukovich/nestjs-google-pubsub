@@ -8,7 +8,7 @@ export const InjectPubSub: (projectName: string) => ParameterDecorator = (
 
 export const InjectTopic: (
   topicName: string,
-  projectName: string,
+  projectName?: string,
 ) => ParameterDecorator = (
   topicName: string,
   projectName: string = DEFAULT_PROJECT_NAME,
